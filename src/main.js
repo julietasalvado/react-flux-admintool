@@ -1,6 +1,5 @@
-/**
- * Created by Julieta on 25/03/2017.
- */
+$ = jQuery = require('jquery'); //bootstrap expects jquery to be defined globally
+
 var App = console.log('Hola, che');
 
 module.exports = App;
