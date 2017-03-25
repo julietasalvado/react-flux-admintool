@@ -6,13 +6,18 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect'); //Runs a local dev server
 var open = require('gulp-open');//Opens a URL in a web browser
+var browserify = require('browserify'); //Bundles JS
+var reactify = require('reactify'); //Tranforms Reacts JSX to JS
+var source = require('vinyl-source-stream'); //use conventional text stream with Gulp
 
 var config = {
     port: 9005,
     devBaseUrl: 'http://localhost',
     paths: {
         html: './src/*.html',
-        dist: './dist'
+        js: './src/**/*.js',
+        dist: './dist',
+        mainJs: './src/main.js'
     }
 }
 
@@ -40,11 +45,22 @@ gulp.task('html', function () {
         .pipe(connect.reload()); //and reload
 });
 
+//convert to JS
+gulp.task('js', function () {
+    browserify(config.paths.mainJs)
+        .transform(reactify)
+        .bundle()
+        .on('error', console.error.bind(console))
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest(config.paths.dist + '/scripts'));
+})
+
 //Watch files then when files changed, gulp knows and reload the browser
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html'])
+    gulp.watch(config.paths.js, ['js'])
 });
 
 
 //Tasks that should run by default
-gulp.task('default', ['html', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'open', 'watch']);
