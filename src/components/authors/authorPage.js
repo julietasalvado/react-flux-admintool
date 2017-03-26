@@ -34,6 +34,7 @@ var Authors = React.createClass({
         };
         return(
             //we need a wrap to the component, usually in a div
+            //iterate over the list in tbody
             <div>
                 <h1>Authors</h1>
 
@@ -43,7 +44,6 @@ var Authors = React.createClass({
                         <th>Name</th>
                     </thead>
                     <tbody>
-                        //iterate over the list
                         {this.state.authors.map(createAuthorRow, this)}
                     </tbody>
                 </table>
