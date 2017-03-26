@@ -11,7 +11,7 @@ var React = require('react');
 var AuthorApi = require('../../api/authorApi');
 var AuthorList = require('./authorList');
 
-var Authors = React.createClass({
+var AuthorPage = React.createClass({
 
     //Using lifecycle method: initial state with empty array
     getInitialState : function () {
@@ -37,4 +37,4 @@ var Authors = React.createClass({
     }
 });
 
-module.exports = Authors;
+module.exports = AuthorPage;

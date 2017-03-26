@@ -17,6 +17,11 @@ var React = require('react');
 
 var AuthorList = React.createClass({
 
+    //dev mode validation
+    propTypes: {
+        authors: React.PropTypes.array.isRequired
+    },
+
     render: function () {
         //it returns a table row
         var createAuthorRow = function (author) {
