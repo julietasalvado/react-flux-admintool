@@ -2,6 +2,7 @@ $ = jQuery = require('jquery'); //bootstrap expects jquery to be defined globall
 
 var React = require('react');
 var Home = require('./components/homePage');
+var Author = require('./components/authors/authorPage')
 var About = require('./components/about/aboutPage');
 var Header = require('./components/common/header');
 
@@ -11,6 +12,7 @@ var App = React.createClass({
 
         switch (this.props.route) {
             case 'about': Child = About; break;
+            case 'authors': Child = Author; break;
             default: Child = Home;
         }
 
