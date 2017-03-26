@@ -16,6 +16,7 @@ var config = {
     devBaseUrl: 'http://localhost',
     paths: {
         html: './src/*.html',
+        images: './src/images/*',
         js: './src/**/*.js',
         css: [
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
@@ -67,6 +68,17 @@ gulp.task('css', function () {
         .pipe(gulp.dest(config.paths.dist + '/css'));
 })
 
+//migrates images to dist folder
+gulp.task('images', function () {
+    gulp.src(config.paths.images)
+        .pipe(gulp.dest(config.paths.dist + '/images'))
+        .pipe(connect.reload());
+
+    //publish fav icon
+    gulp.src('./src/favicon.ico')
+        .pipe(gulp.dest(config.paths.dist));
+})
+
 //Watch files then when files changed, gulp knows and reload the browser
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html'])
@@ -75,4 +87,4 @@ gulp.task('watch', function () {
 
 
 //Tasks that should run by default
-gulp.task('default', ['html', 'js', 'css', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'images', 'open', 'watch']);
