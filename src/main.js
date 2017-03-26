@@ -1,5 +1,7 @@
 $ = jQuery = require('jquery'); //bootstrap expects jquery to be defined globally
 
-var App = console.log('Hola, che');
+var React = require('react');
+var Home = require('./components/homePage')
 
-module.exports = App;
+
+React.render(/*what I want to render*/ <Home/>, /*DOM element that I'd like to attach my app to*/ document.getElementById('app'));
