@@ -9,7 +9,7 @@ var React = require('react');
 var Header = React.createClass({
     render: function () {
         return (
-            <nav classname="navbar navbar-default">
+            <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <a href="/" className="navbar-brand">
                         <img src="images/Logo.jpg" />
