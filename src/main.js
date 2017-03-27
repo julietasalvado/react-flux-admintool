@@ -1,36 +1,11 @@
-$ = jQuery = require('jquery'); //bootstrap expects jquery to be defined globally
 
 var React = require('react');
-var Home = require('./components/homePage');
-var Author = require('./components/authors/authorPage')
-var About = require('./components/about/aboutPage');
-var Header = require('./components/common/header');
+var Router = require('react-router');
+var routes = require('./routes');
 
-var App = React.createClass({
-    render: function () {
-        var Child;
-
-        switch (this.props.route) {
-            case 'about': Child = About; break;
-            case 'authors': Child = Author; break;
-            default: Child = Home;
-        }
-
-        return (
-            <div>
-                <Header/>
-                <Child/>
-            </div>
-        );
-    }
+//for the handler that's currently in the scope based on the URL
+Router.run(routes, function (Handler) {
+    React.render(<Handler/>, document.getElementById('app'));
 });
 
-function render() {
-    var route = window.location.hash.substr(1);
-    React.render(/*what I want to render*/ <App route={route}/>, /*DOM element that I'd like to attach my app to*/ document.getElementById('app'));
-}
-
-//the event that occurs when there is a hash change in the URL
-window.addEventListener('hashchange', render);
-render();
 
