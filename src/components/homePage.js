@@ -5,6 +5,8 @@
 "use strict";
 
 var React = require('react');
+var Route = require('react-router');
+var Link = Route.Link;
 
 //the class which contains our component
 var Home = React.createClass({
@@ -15,6 +17,7 @@ var Home = React.createClass({
             <div className="jumbotron">
                 <h1>Administration Tool</h1>
                 <p>The best tool ever</p>
+                <Link to="about" className="btn btn-primary btn-lg">Learn More</Link>
             </div>
         );
     }
